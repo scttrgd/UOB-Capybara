@@ -1,0 +1,5 @@
+require 'capybara-screenshot/cucumber'
+require 'capybara/cucumber'
+require 'capybara/dsl'
+require_relative '../../cyfrinair.rb'
+require 'capybara/poltergeist'

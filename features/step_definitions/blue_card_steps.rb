@@ -1,6 +1,14 @@
-require 'capybara/cucumber'
-require_relative '../../cyfrinair.rb'
+# Capybara.javascript_driver = :poltergeist
+# Capybara.default_driver = :poltergeist
 Capybara.default_driver = :selenium
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Driver::Selenium.new(app,
+#     :browser => :remote,
+#     :url => "http://192.168.1.127:4444/wd/hub",
+#     :desired_capabilities => :internet_explorer)
+# end
+
+
 
 ###############################################################
 ##                   FEATURE: CAS LOGIN                      ##
@@ -32,8 +40,14 @@ Then (/^I should redirect to the cas login page$/) do
   expect(page).to have_no_content "Blue Card"
 end
 
-Given (/^)
+###############################################################
+## Scenario: I visit the delete account button for account   ##
+##                    Without logging in                     ##
+###############################################################
 
+Given (/^I visit the delete page for a specific account/) do
+  visit ""
+end
 
 ###############################################################
 ##                 FEATURE: ACCOUNT CHECK                    ##
@@ -48,6 +62,9 @@ When(/^I log in at the cas redirect page$/) do
   within('#header') { expect(page).to have_content('Single Sign-on') }
   fill_in 'username', :with => $username
   fill_in 'password', :with => $cyfrinair
+  if Capybara.default_driver = :selenium
+    page.
+  # page.save_screenshot('')
   find(".btn-submit").click
 end
 Then (/^I should shown the Blue Card Administration Page$/) do
