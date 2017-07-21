@@ -1,6 +1,6 @@
-# Capybara.javascript_driver = :poltergeist
-# Capybara.default_driver = :poltergeist
-Capybara.default_driver = :selenium
+Capybara.javascript_driver = :poltergeist
+Capybara.default_driver = :poltergeist
+# Capybara.default_driver = :selenium-webdriver
 # Capybara.register_driver :selenium do |app|
 #   Capybara::Driver::Selenium.new(app,
 #     :browser => :remote,
@@ -62,9 +62,7 @@ When(/^I log in at the cas redirect page$/) do
   within('#header') { expect(page).to have_content('Single Sign-on') }
   fill_in 'username', :with => $username
   fill_in 'password', :with => $cyfrinair
-  if Capybara.default_driver = :selenium
-    page.
-  # page.save_screenshot('')
+  page.save_screenshot('password.png')
   find(".btn-submit").click
 end
 Then (/^I should shown the Blue Card Administration Page$/) do
