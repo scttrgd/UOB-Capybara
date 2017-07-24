@@ -1,5 +1,6 @@
 require 'capybara-screenshot/cucumber'
 require 'capybara/cucumber'
 require 'capybara/dsl'
+require 'selenium-webdriver'
 require_relative '../../../cyfrinair.rb'
 require 'capybara/poltergeist'
