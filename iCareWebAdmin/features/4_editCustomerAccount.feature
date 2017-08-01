@@ -11,3 +11,4 @@ Scenario Outline: User
   Examples:
     | forename         | surnameOriginal   | surnameReplace | username      |
     | Test             |                   |                | t-it51        |
+    | Ben              |                   |                |               |
