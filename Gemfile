@@ -6,4 +6,6 @@ source 'https://rubygems.org' do
     gem 'selenium-webdriver'
     gem 'capybara-screenshot', :group => :test
     gem 'rspec'
+    gem 'parallel_tests'
+    gem 'sauce_whisk'
 end

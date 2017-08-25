@@ -2,4 +2,4 @@
 ##YAML Template
 ---
 local: SERVER=http://localhost:8080/icarewebadmin
-# live: SERVER=http
+live: SERVER=https://www.bath.ac.uk/accommodation/icareadmin
