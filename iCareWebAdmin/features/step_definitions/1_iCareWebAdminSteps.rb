@@ -1,25 +1,6 @@
-# Capybara.javascript_driver = :poltergeist
-# Capybara.default_driver = :poltergeist
-# Capybara.default_driver = :selenium
-Capybara.run_server = false
-caps = Selenium::WebDriver::Remote::Capabilities.edge()
-caps['platform'] = 'Windows 10'
-caps['version'] = '14.14393'
-caps['screenResolution'] = '1920x1080'
-Capybara.register_driver(:remote) do |app|
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :remote,
-    url: 'http://bjs62:fa875947-b0e7-4df7-830d-7d6cf099a439@ondemand.saucelabs.com:80/wd/hub',
-    desired_capabilities: caps
-  )
-end
-# Capybara.default_driver = Selenium::WebDriver.for(:remote,
-    # :url => "http://bjs62:fa875947-b0e7-4df7-830d-7d6cf099a439@ondemand.saucelabs.com:80/wd/hub",
-    # :desired_capabilities => caps)
 
-Capybara.default_driver = :remote
 
+## Some Variables that get reused throughout
 $i = 0
 $invalid_project_code = 'not valid'
 $valid_project_code = 'CA-CS1ACH'
@@ -28,9 +9,8 @@ $valid_user_id = $it51[0]
 
 Given(/^the user is not logged in$/) do
   expect(page).to have_title "University of Bath Single Sign-on"
-  expect(page).to have_no_content "iCare"
+  # expect(page).to have_no_content "iCare"
 end
-
 
 ################################################################################
 ##################### FEATURE: AUTOLOAD PROGRAM ACCESS #########################
@@ -38,8 +18,6 @@ end
 Given(/^the user attempts to visit the AutoLoad Program$/) do
   visit ENV['SERVER']+"/dd_batch_update"
 end
-
-
 
 When(/^the User logs in as Finance Admin$/) do
   fill_in 'Username', with: $it52[0]
@@ -98,39 +76,39 @@ Then(/^the user should receive an error$/) do
   expect(page).to have_css ".error"
 end
 
-When(/^the user inputs "([^"]*)" into forename$/) do |arg1|
-  fill_in 'forename', with: arg1
+When(/^the user inputs "([^"]*)" into forename$/) do |forename|
+  fill_in 'forename', with: forename
 end
-When(/^the user inputs "([^"]*)" into surname$/) do |arg1|
-  fill_in 'surname', with: arg1
-end
-
-When(/^the user inputs "([^"]*)" into library card$/) do |arg1|
-  fill_in 'libraryCard', with: arg1
+When(/^the user inputs "([^"]*)" into surname$/) do |surname|
+  fill_in 'surname', with: surname
 end
 
-When(/^the user inputs "([^"]*)" into email$/) do |arg1|
-  fill_in 'email', with: arg1
+When(/^the user inputs "([^"]*)" into library card$/) do |libraryCard|
+  fill_in 'libraryCard', with: libraryCard
 end
 
-When(/^the user inputs "([^"]*)" into project code$/) do |arg1|
-  fill_in 'projectCode', with: arg1
+When(/^the user inputs "([^"]*)" into email$/) do |email|
+  fill_in 'email', with: email
 end
 
-When(/^the user inputs "([^"]*)" into icare customer number$/) do |arg1|
-  fill_in 'iCareCustomerNo', with: arg1
+When(/^the user inputs "([^"]*)" into project code$/) do |projectCode|
+  fill_in 'projectCode', with: projectCode
+end
+
+When(/^the user inputs "([^"]*)" into icare customer number$/) do |iCareCustomerNo|
+  fill_in 'iCareCustomerNo', with: iCareCustomerNo
 end
 
 When(/^the user submits the search$/) do
   click_on('Search')
 end
 
-Then(/^"([^"]*)" should be included in the search results$/) do |arg1|
-  expect(page).to have_content(/#{arg1}|No Customers Found/)
+Then(/^"([^"]*)" should be included in the search results$/) do |forename|
+  expect(page).to have_content(/#{forename}|No Customers Found/)
 end
 
-When(/^the user inputs less than ten characters \- "([^"]*)" into Library Card$/) do |arg1|
-  fill_in 'libraryCard', with: arg1
+When(/^the user inputs less than ten characters \- "([^"]*)" into Library Card$/) do |libraryCard|
+  fill_in 'libraryCard', with: libraryCard
 end
 
 Then(/^a validation error should occur$/) do
