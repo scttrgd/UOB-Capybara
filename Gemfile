@@ -9,4 +9,5 @@ source 'https://rubygems.org' do
     gem 'parallel_tests'
     gem 'sauce_whisk'
     gem 'appium_capybara'
+    gem 'browserstack-local'
 end
